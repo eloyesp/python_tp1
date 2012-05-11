@@ -23,25 +23,45 @@ create_text(275, 500, "4", 10, "CENTER") #Número del circulo.
 print "Elija dos circulos (numerados del 1 al 4) para unirlos con una línea." #Explicación para el buen funcionamiento del programa.
 
 x = int(raw_input("Ingrese el número del primer circulo: "))
-y = int(raw_input("Ingrese el número del segundo circulo: "))
-
-while (x<1 or x>4 or x==y):
+while (x<1 or x>4):
   x = int(raw_input("Vuelva a ingresar un numero entre 1 y 4 para el primer circulo: "))
   
-while (y<1 or y>4):
+y = int(raw_input("Ingrese el número del segundo circulo: "))
+while (y<1 or y>4 or x==y):
   y = int(raw_input("Vuelva a ingresar un numero entre 1 y 4 para el segundo circulo: "))
 
 if x==1 and y==2 or x==2 and y==1:
   create_line(500, 725, 725, 500, "Black")
+  centro_x = (500, 725)
+  centro_y = (725, 500)
 elif x==2 and y==3 or x==3 and y==2:
   create_line(725, 500, 500, 275, "Black")
+  centro_x = (500, 275)
+  centro_y = (725, 500)
 elif x==3 and y==4 or x==4 and y==3:
   create_line(500, 275, 275, 500, "Black")
+  centro_x = (275, 500)
+  centro_y = (500, 275)
 elif x==4 and y==1 or x==1 and y==4:
   create_line(275, 500, 500, 725, "Black")
+  centro_x = (275, 500)
+  centro_y = (500, 725)
 elif x==1 and y==3 or x==3 and y==1:
   create_line(500, 725, 500, 275, "Black")
+  centro_x = (500, 725)
+  centro_y = (500, 275)
 elif x==2 and y==4 or x==4 and y==2:
   create_line(725, 500, 275, 500, "Black")
+  centro_x = (275, 500)
+  centro_y = (725, 500)
+
+if centro_x[0] == centro_y[0]:
+  formula = "x = 500"
+else:
+  pendiente = (centro_x[1] - centro_y[1]) / (centro_x[0] - centro_y[0])
+  ordenada = centro_x[1] - pendiente * centro_x[0]
+  formula = "y = " + str(pendiente) + " x + " + str(ordenada)
+
+create_text(700, 50, formula, 5, "CENTER")
 
 print "Usted trazó la línea entre los circulos %d y %d." %(x, y)
