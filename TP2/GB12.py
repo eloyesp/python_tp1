@@ -1,4 +1,8 @@
-from math import cos
+﻿from math import cos
+
+# Aproxima el coseno a partir de una serie de Taylor, para un valor de x
+# (float), la serie se evalua hasta que la diferencia con el valor dado por
+# python es equivalente en los primeros n decimales.
 
 def aproximacion_coseno(x, decimales):
     # Inicializacion de las variables
@@ -9,9 +13,9 @@ def aproximacion_coseno(x, decimales):
     n = 0
     
     def buena_aproximacion(value, expected, decimales):
-        # print "Diferencia (", value, " - ", expected, ")) = ", abs(value - expected)
         return abs(value - expected) < 10 ** (- decimales)
 
+    # Factorial y potencia se calculan utilizando funciones.
     def factorial(n):
         resultado = 1
         if n > 1:            
@@ -25,13 +29,17 @@ def aproximacion_coseno(x, decimales):
             for i in range(n):
                 resultado *= x
         return resultado
-    
+
+    # Se mejora la aproximacion hasta ser "buena".
     while not buena_aproximacion(aproximacion, cos_de_python, decimales):
         n += 1
         termino = potencia(-1, n) * potencia(x, 2*n) / factorial(2*n)
         aproximacion += termino
 
     return aproximacion
+
+# Equivalente a la anterior pero más eficiente, ya que no realiza llamados a
+# funcion y no calcula repetidamente las multiplicaciones.
 
 def aproximacion_coseno_rapida(x, decimales):
     # Inicializacion de las variables
@@ -54,6 +62,9 @@ def aproximacion_coseno_rapida(x, decimales):
         aproximacion += termino
         
     return aproximacion
+
+
+# Aca probamos las funciones para ver como funcionan...
 
 from time import clock
 
