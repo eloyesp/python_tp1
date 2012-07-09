@@ -28,12 +28,50 @@ def aproximacion_coseno(x, decimales):
     
     while not buena_aproximacion(aproximacion, cos_de_python, decimales):
         n += 1
-        termino = (-1)**(n) * potencia(x, 2*n) / factorial(2*n)
+        termino = potencia(-1, n) * potencia(x, 2*n) / factorial(2*n)
         aproximacion += termino
 
     return aproximacion
 
-resultado = aproximacion_coseno(1, 5)
+def aproximacion_coseno_rapida(x, decimales):
+    # Inicializacion de las variables
+    x = float(x)
+    decimales = int(decimales)
+    cos_de_python = cos(x)
 
-print "Resultado: ", resultado
-print "cos_de_python: ", cos(1)
+    numerador = 1.0
+    denominador = 1
+    signo = 1
+    aproximacion = 1.0
+    n = 0
+        
+    while abs(aproximacion - cos_de_python) > 10 ** (- decimales):
+        n += 1
+        numerador *= x * x
+        denominador *= (2*n - 1) * (2*n)
+        signo *= (-1)
+        termino = signo * numerador / denominador
+        aproximacion += termino
+        
+    return aproximacion
+
+from time import clock
+
+benchmark = clock()
+
+for x in (0, 1, 5, -5, 10, 20):
+    for n in (3, 5, 8):
+        resultado = aproximacion_coseno(x, n)
+        print "Resultado: ", resultado
+        print "Cos_de_py: ", cos(x)
+
+print "benchmark: ", clock() - benchmark
+benchmark = clock()
+
+for x in (0, 1, 5, -5, 10, 20):
+    for n in (3, 5, 8):
+        resultado = aproximacion_coseno_rapida(x, n)
+        print "Resultado: ", resultado
+        print "Cos_de_py: ", cos(x)
+
+print "benchmark: ", clock() - benchmark
