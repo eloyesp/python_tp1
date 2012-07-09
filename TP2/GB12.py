@@ -1,6 +1,7 @@
 from math import cos
 
 def aproximacion_coseno(x, decimales):
+    # Inicializacion de las variables
     x = float(x)
     decimales = int(decimales)
     cos_de_python = cos(x)
@@ -8,7 +9,7 @@ def aproximacion_coseno(x, decimales):
     n = 0
     
     def buena_aproximacion(value, expected, decimales):
-        print "Diferencia (", value, " - ", expected, ")) = ", abs(value - expected)
+        # print "Diferencia (", value, " - ", expected, ")) = ", abs(value - expected)
         return abs(value - expected) < 10 ** (- decimales)
 
     def factorial(n):
@@ -17,19 +18,22 @@ def aproximacion_coseno(x, decimales):
             for i in range(2, n+1):
                 resultado *= i
         return resultado
+
+    def potencia(x, n):
+        resultado = 1
+        if n > 0:
+            for i in range(n):
+                resultado *= x
+        return resultado
     
     while not buena_aproximacion(aproximacion, cos_de_python, decimales):
         n += 1
-        termino = (-1)**(n) * x**(2*n) / factorial(2*n)
+        termino = (-1)**(n) * potencia(x, 2*n) / factorial(2*n)
         aproximacion += termino
-        print "num Termino: ", n
-        print "Termino: ", termino
-        print "Aproximacion: ", aproximacion
 
-    
-    return cos_de_python
+    return aproximacion
 
-resultado = aproximacion_coseno(1, 3)
+resultado = aproximacion_coseno(1, 5)
 
 print "Resultado: ", resultado
-print "Aprox (3): ", round(resultado, 3)
+print "cos_de_python: ", cos(1)
