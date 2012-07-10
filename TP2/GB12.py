@@ -10,7 +10,7 @@ def aproximacion_coseno(x, decimales):
     decimales = int(decimales)
     cos_de_python = cos(x)
     aproximacion = 1.0
-    n = 0
+    n = 1
     
     def buena_aproximacion(value, expected, decimales):
         return abs(value - expected) < 10 ** (- decimales)
@@ -32,10 +32,11 @@ def aproximacion_coseno(x, decimales):
 
     # Se mejora la aproximacion hasta ser "buena".
     while not buena_aproximacion(aproximacion, cos_de_python, decimales):
-        n += 1
         termino = potencia(-1, n) * potencia(x, 2*n) / factorial(2*n)
         aproximacion += termino
+        n += 1
 
+    print "Se calcularon %i terminos de la serie" % n
     return aproximacion
 
 # Equivalente a la anterior pero más eficiente, ya que no realiza llamados a
@@ -51,16 +52,17 @@ def aproximacion_coseno_rapida(x, decimales):
     denominador = 1
     signo = 1
     aproximacion = 1.0
-    n = 0
+    n = 1
         
     while abs(aproximacion - cos_de_python) > 10 ** (- decimales):
-        n += 1
         numerador *= x * x
         denominador *= (2*n - 1) * (2*n)
         signo *= (-1)
         termino = signo * numerador / denominador
         aproximacion += termino
-        
+        n += 1
+
+    print "Se calcularon %i terminos de la serie" % n    
     return aproximacion
 
 
