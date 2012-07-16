@@ -142,13 +142,14 @@ print "I.S.I. - Comision 'B'"
 
 opcion = 0
 opcion2 = ""
-respuesta="si"
-while opcion!=4 and (respuesta=="si" or respuesta=="s"):
+
+while opcion!=4:
   print "\n1) Multiplicacion de 2 numeros enteros."
   print "2) Cambio de base."
   print "3) Calculo de coseno(x), mediante serie."
   print "4) Cerrar programa."
   opcion = int(raw_input("\nEscoja una opcion: "))
+  respuesta = "si"
 
   #Primer inciso:
   if opcion==1:
@@ -163,7 +164,6 @@ while opcion!=4 and (respuesta=="si" or respuesta=="s"):
       print "Usted ingreso los numeros %d y %d\n" %(x, y)#Muestra los valores que el usuario ingresó.
       multiplicacion_enteros(x, y)
       respuesta=raw_input("\nQuiere ingresar dos nuevos enteros(si/no)? ")
-    respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
 
   #Segundo inciso:
   elif opcion==2:
@@ -181,7 +181,6 @@ while opcion!=4 and (respuesta=="si" or respuesta=="s"):
       while respuesta=="si" or respuesta=="s":
         print base2(int(raw_input("\nEscriba el numero decimal a convertir: ")))#Pide el número que el usuario desee convertir e imprime el resultado.
         respuesta=(raw_input("\nQuiere convertir otro numero(si/no)? "))#En caso de que quiera convertir otro número tendra que pulsar "si" o "s".
-      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
     #Inciso "b":
     elif opcion2=="b":
       print "\nEscogio la opcion b): Cambiar de Binario a Decimal.:"
@@ -189,7 +188,6 @@ while opcion!=4 and (respuesta=="si" or respuesta=="s"):
         binario=base10(str(raw_input("\nEscriba un numero en binario: ")))#Pide el número que el usuario desee convertir.
         print "El numero convertido es %d" %(binario)#Imprime el resultado.
         respuesta=(raw_input("\nQuiere convertir otro numero(si/no)? "))#En caso de que quiera convertir otro número tendra que pulsar "si" o "s".
-      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
 
   #Tercer inciso.
   elif opcion==3:
@@ -209,7 +207,6 @@ while opcion!=4 and (respuesta=="si" or respuesta=="s"):
         decimales = int(raw_input("Indique la precision deseada (en cantidad de decimales): "))#El usuario ingresa el segundo parámetro.
         print "La aproximacion obtenida es: ", aproximacion_coseno(x, decimales)#Muestra el valor de la función con los parámetros dados por el usuario.
         respuesta=raw_input("\nQuiere escribir otros valores(si/no)? ")
-      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
     #Inciso "b":
     elif opcion2=="b":
       print "\nEscogio la opcion b): Funcion exponencial que no realiza ineficientes llamadas a potencia y factorial." 
@@ -218,12 +215,11 @@ while opcion!=4 and (respuesta=="si" or respuesta=="s"):
         decimales = int(raw_input("Indique la precision deseada (en cantidad de decimales): "))#El usuario ingresa el segundo parámetro.
         print "La aproximacion obtenida es: ", aproximacion_coseno_rapida(x, decimales)#Muestra el valor de la función con los parámetros dados por el usuario.
         respuesta=raw_input("\nQuiere escribir otros valores(si/no)? ")
-      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
 
   #Finalización de programa:
   elif opcion==4:
-    print "\nEl programa se ah finalizado."#Si el usuario eligió esta opción se termina el programa.
+    print "\nEl programa ha finalizado."#Si el usuario eligió esta opción se termina el programa.
 
   #Otra opción:
   else:
-    print "Ingrese una opcion valida (1,2,3 o 4)."#Esto se imprime cuando el usuario no elije una de las opciones dadas en el menú, pide que elija una correcta.
+    print "Ingrese una opcion valida (1, 2, 3 o 4)."#Esto se imprime cuando el usuario no elije una de las opciones dadas en el menú, pide que elija una correcta.
