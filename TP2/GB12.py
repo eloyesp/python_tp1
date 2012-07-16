@@ -3,8 +3,9 @@ from math import cos
 
 #Definimos funciones
 
+# Consigna 1
 def multiplicacion_enteros(x, y):
-    if x<=999999 and (y>0 and y<=999999):#Condiciones de acuerdo a los valores que ingresó el usuario.
+    if x < 10**6 and y > 0 and y < 10**6 :
         print "%11d \nx%10d" %(x,y)
         print "-----------"
         #Declaramos variables:
@@ -28,8 +29,8 @@ def multiplicacion_enteros(x, y):
         #Sumamos los valores dados por cada multiplicación e imprimimos el resultado final.
         sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000))
         print "%11d" %(sum)
-        #En caso de que el "y" sea negativo, intercambiará lugar con la variable "x" y se ejecutara la multiplicación.
-        #No supimos resolver en caso de que el usuario ingrese dos números negativos.
+    #En caso de que el "y" sea negativo, intercambiará lugar con la variable "x" y se ejecutara la multiplicación.
+    #No supimos resolver en caso de que el usuario ingrese dos números negativos.
     else:
         print "       %14d \n       x%13d" %(x,y)
         print "       --------------"
