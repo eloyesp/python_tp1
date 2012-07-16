@@ -194,7 +194,7 @@ while opcion!=4:
     #Mostramos el submenú:
     print "\nEscogio la opcion 3: Calculo de coseno(x), mediante serie:"
     print "\na) El factorial, representado por !, y el operador de potencia, representado por **, se implementan en el programa mediante funciones."
-    print "b) Funcion exponencial que no realiza ineficientes llamadas a potencia y factorial."
+    print "b) Funcion que no realiza ineficientes llamadas a potencia y factorial."
     opcion2 = raw_input("\nEscoja opcion a) o b): ")
     while opcion2<"a" or opcion2>"b":
       print "Solo puede elegir a) o b)."
@@ -217,7 +217,7 @@ while opcion!=4:
         respuesta=raw_input("\nQuiere escribir otros valores(si/no)? ")
 
   #Finalización de programa:
-  elif opcion==4:
+  elif opcion == 4:
     print "\nEl programa ha finalizado."#Si el usuario eligió esta opción se termina el programa.
 
   #Otra opción:
