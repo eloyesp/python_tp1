@@ -1,8 +1,25 @@
-ï»¿from math import cos
+#Definimos funciones e importo la funcion del coseno(x).
+def base2(n):
+  result = ""
+  while (True):
+    aux = str(n%2)
+    n = int(n/2)
+    result = aux + result
+    if (n<=1):
+      result = (str(n) if n>0 else "") + result
+      break
+  return result
 
-# Aproxima el coseno a partir de una serie de Taylor, para un valor de x
-# (float), la serie se evalua hasta que la diferencia con el valor dado por
-# python es equivalente en los primeros n decimales.
+def base10(strn):
+  l = len(strn)-1
+  result = 0
+  for i in strn:
+    p = 2**l
+    result = result + (int(i)*p)
+    l = l-1
+  return result
+
+from math import cos
 
 def aproximacion_coseno(x, decimales):
     # Inicializacion de las variables
@@ -39,9 +56,6 @@ def aproximacion_coseno(x, decimales):
     print "Se calcularon %i terminos de la serie" % n
     return aproximacion
 
-# Equivalente a la anterior pero mÃ¡s eficiente, ya que no realiza llamados a
-# funcion y no calcula repetidamente las multiplicaciones.
-
 def aproximacion_coseno_rapida(x, decimales):
     # Inicializacion de las variables
     x = float(x)
@@ -65,26 +79,144 @@ def aproximacion_coseno_rapida(x, decimales):
     print "Se calcularon %i terminos de la serie" % n    
     return aproximacion
 
+#Título del trabajo.
 
-# Aca probamos las funciones para ver como funcionan...
+print "Trabajo Practico Numero 2. Tema C."
+print "Integrantes: Espinaco-Muga-Olivera."
+print "I.S.I. - Comision 'B'"
 
-from time import clock
+#Mostramos el Menú:
 
-benchmark = clock()
+opcion = 0
+opcion2 = ""
+respuesta="si"
+while opcion!=4 and (respuesta=="si" or respuesta=="s"):
+  print "\n1) Multiplicacion de 2 numeros enteros."
+  print "2) Cambio de base."
+  print "3) Calculo de coseno(x), mediante serie."
+  print "4) Cerrar programa."
+  opcion = int(raw_input("\nEscoja una opcion: "))
 
-for x in (0, 1, 5, -5, 10, 20):
-    for n in (3, 5, 8):
-        resultado = aproximacion_coseno(x, n)
-        print "Resultado: ", resultado
-        print "Cos_de_py: ", cos(x)
+  #Primer inciso:
+  if opcion==1:
+    while respuesta=="si" or respuesta=="s":
+      print "\nEscogio la opcion 1: Multiplicacion de 2 numeros enteros:\n"#Imprime en pantalla la opción elejida.
+      x=int(raw_input("Ingrese el primer numero entero: "))#Pide el primer número.
+      while x>999999:#Condicion para que no supere los 6 digitos.
+        x=int(raw_input("El numero puede tener hasta 6 digitos: "))#Vuelve a pedir en caso de que haya ingresado mal.
+      y=int(raw_input("Ingrese el segundo numero entero: "))#Pide el segundo número.
+      while y>999999:#Condición para que el número ingresado no supere los 6 digitos.
+        y=int(raw_input("El numero puede tener hasta 6 digitos: "))#Vuelve a pedir el número si el usuario ingreso incorrectamente el mismo.
+      print "Usted ingreso los numeros %d y %d\n" %(x, y)#Muestra los valores que el usuario ingresó.
+      if x<=999999 and (y>0 and y<=999999):#Condiciones de acuerdo a los valores que ingresó el usuario.
+        print "%11d \nx%10d" %(x,y)
+        print "-----------"
+        #Declaramos variables:
+        numero=y%10
+        primeramult=numero*x
+        numero=(y/10)%10
+        segundamult=numero*x
+        numero=(y/100)%10
+        terceramult=numero*x
+        numero=(y/1000)%10
+        cuartamult=numero*x
+        numero=(y/10000)%10
+        quintamult=numero*x
+        #Se muestran las multiplicaciones que se van realizando digito por digito (en caso de no haber, solo se imprimen los guiones con un cero a la izquierda).
+        print "%11d" % (primeramult)
+        print "%10d-" % (segundamult)
+        print "%9d--" % (terceramult)
+        print "%8d---" % (cuartamult)
+        print "%7d----" % (quintamult)
+        print "-----------"
+        #Sumamos los valores dados por cada multiplicación e imprimimos el resultado final.
+        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000))
+        print "%11d" %(sum)
+        #En caso de que el "y" sea negativo, intercambiará lugar con la variable "x" y se ejecutara la multiplicación.
+        #No supimos resolver en caso de que el usuario ingrese dos números negativos.
+      else:
+        print "       %14d \n       x%13d" %(x,y)
+        print "       --------------"
+        numero=x%10
+        primeramult=numero*y
+        numero=(x/10)%10
+        segundamult=numero*y
+        numero=(x/100)%10
+        terceramult=numero*y
+        numero=(x/1000)%10
+        cuartamult=numero*y
+        numero=(x/10000)%10
+        quintamult=numero*y
+        print "       %14d" % (primeramult)
+        print "       %13d-" % (segundamult)
+        print "       %12d--" % (terceramult)
+        print "       %11d---" % (cuartamult)
+        print "       %10d----" % (quintamult)
+        print "       --------------"
+        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000))
+        print "       %14d" %(sum)
+      respuesta=raw_input("\nQuiere ingresar dos nuevos enteros(si/no)? ")
+    respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
 
-print "benchmark: ", clock() - benchmark
-benchmark = clock()
+  #Segundo inciso:
+  elif opcion==2:
+    #Mostramos el submenú:
+    print "\nEscogio la opcion 2: Cambio de base.:"
+    print "\na) Cambiar de Decimal a Binario."
+    print "b) Cambiar de Binario a Decimal."
+    opcion2 = raw_input("\nEscoja opcion a) o b): ")
+    while opcion2<"a" or opcion2>"b":#Condición para que solo pueda escojer "a" o "b".
+      print "\nSolo puede elegir a) o b)."
+      opcion2 = raw_input("Vuelva a intentarlo: ")#En caso de que el usuario haya ingresado otro caracter, vuelve a pedirselo.
+    #Inciso "a":
+    if opcion2=="a":
+      print "\nEscogio la opcion a): Cambiar de Decimal a Binario.:"
+      while respuesta=="si" or respuesta=="s":
+        print base2(int(raw_input("\nEscriba el numero decimal a convertir: ")))#Pide el número que el usuario desee convertir e imprime el resultado.
+        respuesta=(raw_input("\nQuiere convertir otro numero(si/no)? "))#En caso de que quiera convertir otro número tendra que pulsar "si" o "s".
+      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
+    #Inciso "b":
+    elif opcion2=="b":
+      print "\nEscogio la opcion b): Cambiar de Binario a Decimal.:"
+      while respuesta=="si" or respuesta=="s":
+        binario=base10(str(raw_input("\nEscriba un numero en binario: ")))#Pide el número que el usuario desee convertir.
+        print "El numero convertido es %d" %(binario)#Imprime el resultado.
+        respuesta=(raw_input("\nQuiere convertir otro numero(si/no)? "))#En caso de que quiera convertir otro número tendra que pulsar "si" o "s".
+      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
 
-for x in (0, 1, 5, -5, 10, 20):
-    for n in (3, 5, 8):
-        resultado = aproximacion_coseno_rapida(x, n)
-        print "Resultado: ", resultado
-        print "Cos_de_py: ", cos(x)
+  #Tercer inciso.
+  elif opcion==3:
+    #Mostramos el submenú:
+    print "\nEscogio la opcion 3: Calculo de coseno(x), mediante serie:"
+    print "\na) El factorial, representado por !, y el operador de potencia, representado por **, se implementan en el programa mediante funciones."
+    print "b) Funcion exponencial que no realiza ineficientes llamadas a potencia y factorial."
+    opcion2 = raw_input("\nEscoja opcion a) o b): ")
+    while opcion2<"a" or opcion2>"b":
+      print "Solo puede elegir a) o b)."
+      opcion2 = raw_input("Vuelva a intentarlo: ")#En caso de que el usuario haya ingresado otro caracter, vuelve a pedirselo.
+    #Inciso "a":
+    if opcion2=="a":
+      print "\nEscogio la opcion a): El factorial, representado por !, y el operador de potencia, representado por **, se implementan en el programa mediante funciones.:"
+      while respuesta=="si" or respuesta=="s":
+        x=int(raw_input("Escriba el valor de x: "))#El usuario ingresa el primer parámetro.
+        y=int(raw_input("Escriba el valor de y: "))#El usuario ingresa el segundo parámetro.
+        print aproximacion_coseno(x, y)#Muestra el valor de la función con los parámetros dados por el usuario.
+        respuesta=raw_input("\nQuiere escribir otros valores(si/no)? ")
+      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
+    #Inciso "b":
+    elif opcion2=="b":
+      print "\nEscogio la opcion b): Funcion exponencial que no realiza ineficientes llamadas a potencia y factorial." 
+      while respuesta=="si" or respuesta =="s":
+        x=int(raw_input("Escriba el valor de x: "))#El usuario ingresa el primer parámetro.
+        y=int(raw_input("Escriba el valor de y: "))#El usuario ingresa el segundo parámetro.
+        print aproximacion_coseno_rapida(x, y)#Muestra el valor de la función con los parámetros dados por el usuario.
+        respuesta=raw_input("\nQuiere escribir otros valores(si/no)? ")
+      respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
 
-print "benchmark: ", clock() - benchmark
+  #Finalización de programa:
+  elif opcion==4:
+    print "\nEl programa se ah finalizado."#Si el usuario eligió esta opción se termina el programa.
+
+  #Otra opción:
+  else:
+    print "Ingrese una opcion valida (1,2,3 o 4)."#Esto se imprime cuando el usuario no elije una de las opciones dadas en el menú, pide que elija una correcta.
