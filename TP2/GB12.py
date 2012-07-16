@@ -205,18 +205,18 @@ while opcion!=4 and (respuesta=="si" or respuesta=="s"):
     if opcion2=="a":
       print "\nEscogio la opcion a): El factorial, representado por !, y el operador de potencia, representado por **, se implementan en el programa mediante funciones.:"
       while respuesta=="si" or respuesta=="s":
-        x=int(raw_input("Escriba el valor de x: "))#El usuario ingresa el primer parámetro.
-        y=int(raw_input("Escriba el valor de y: "))#El usuario ingresa el segundo parámetro.
-        print aproximacion_coseno(x, y)#Muestra el valor de la función con los parámetros dados por el usuario.
+        x = float(raw_input("Escriba el valor de x: "))#El usuario ingresa el primer parámetro.
+        decimales = int(raw_input("Indique la precision deseada (en cantidad de decimales): "))#El usuario ingresa el segundo parámetro.
+        print "La aproximacion obtenida es: ", aproximacion_coseno(x, decimales)#Muestra el valor de la función con los parámetros dados por el usuario.
         respuesta=raw_input("\nQuiere escribir otros valores(si/no)? ")
       respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
     #Inciso "b":
     elif opcion2=="b":
       print "\nEscogio la opcion b): Funcion exponencial que no realiza ineficientes llamadas a potencia y factorial." 
       while respuesta=="si" or respuesta =="s":
-        x=int(raw_input("Escriba el valor de x: "))#El usuario ingresa el primer parámetro.
-        y=int(raw_input("Escriba el valor de y: "))#El usuario ingresa el segundo parámetro.
-        print aproximacion_coseno_rapida(x, y)#Muestra el valor de la función con los parámetros dados por el usuario.
+        x = float(raw_input("Escriba el valor de x: "))#El usuario ingresa el primer parámetro.
+        decimales = int(raw_input("Indique la precision deseada (en cantidad de decimales): "))#El usuario ingresa el segundo parámetro.
+        print "La aproximacion obtenida es: ", aproximacion_coseno_rapida(x, decimales)#Muestra el valor de la función con los parámetros dados por el usuario.
         respuesta=raw_input("\nQuiere escribir otros valores(si/no)? ")
       respuesta=(raw_input("\nQuiere escojer otra opcion(si/no)? "))
 
