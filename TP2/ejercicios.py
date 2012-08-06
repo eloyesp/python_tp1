@@ -1,13 +1,12 @@
-# -*- coding: UTF-8 -*-
 from math import cos
 
 #Definimos funciones
 
 # Consigna 1
 def multiplicacion_enteros(x, y):
-    if x < 10**6 and y > 0 and y < 10**6 :
-        print "%11d \nx%10d" %(x,y)
-        print "-----------"
+    if x < 10**6 and y >= 0 and y < 10**6:
+        print "%12d \nx%11d" %(x,y)
+        print "------------"
         #Declaramos variables:
         numero=y%10
         primeramult=numero*x
@@ -19,21 +18,22 @@ def multiplicacion_enteros(x, y):
         cuartamult=numero*x
         numero=(y/10000)%10
         quintamult=numero*x
+        numero=(y/100000)%10
+        sextamult=numero*x
         #Se muestran las multiplicaciones que se van realizando digito por digito (en caso de no haber, solo se imprimen los guiones con un cero a la izquierda).
-        print "%11d" % (primeramult)
-        print "%10d-" % (segundamult)
-        print "%9d--" % (terceramult)
-        print "%8d---" % (cuartamult)
-        print "%7d----" % (quintamult)
-        print "-----------"
-        #Sumamos los valores dados por cada multiplicación e imprimimos el resultado final.
-        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000))
-        print "%11d" %(sum)
-    #En caso de que el "y" sea negativo, intercambiará lugar con la variable "x" y se ejecutara la multiplicación.
-    #No supimos resolver en caso de que el usuario ingrese dos números negativos.
-    else:
-        print "       %14d \n       x%13d" %(x,y)
-        print "       --------------"
+        print "%12d" % (primeramult)
+        print "%11d-" % (segundamult)
+        print "%10d--" % (terceramult)
+        print "%9d---" % (cuartamult)
+        print "%8d----" % (quintamult)
+        print "%7d-----" % (sextamult)
+        print "------------"
+        #Sumamos los valores dados por cada multiplicacion e imprimimos el resultado final.
+        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000)+(sextamult*100000))
+        print "%12d" %(sum)
+    elif x < 10**6 and x >= 0 and y < 0:
+        print "%16d \nx%15d" %(x,y)
+        print "----------------"
         numero=x%10
         primeramult=numero*y
         numero=(x/10)%10
@@ -44,15 +44,20 @@ def multiplicacion_enteros(x, y):
         cuartamult=numero*y
         numero=(x/10000)%10
         quintamult=numero*y
-        print "       %14d" % (primeramult)
-        print "       %13d-" % (segundamult)
-        print "       %12d--" % (terceramult)
-        print "       %11d---" % (cuartamult)
-        print "       %10d----" % (quintamult)
-        print "       --------------"
-        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000))
-        print "       %14d" %(sum)
-
+        numero=(x/100000)%10
+        sextamult=numero*y
+        print "%16d" % (primeramult)
+        print "%15d-" % (segundamult)
+        print "%14d--" % (terceramult)
+        print "%13d---" % (cuartamult)
+        print "%12d----" % (quintamult)
+        print "%11d-----" % (sextamult)
+        print "----------------"
+        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000)+(sextamult*100000))
+        print "%16d" %(sum)
+    else:
+      multiplicacion_enteros(-x, -y)
+        
 # Consigna 2 - inciso 'a'
 def base2(n):
     if n == 0: # caso base
@@ -65,14 +70,14 @@ def base2(n):
         resultado = "- " + base2(-n)
     return resultado
 
-def base10(strn):
-  l = len(strn)-1
-  result = 0
-  for i in strn:
+def base10(str):
+  l = len(str)-1
+  resultado = 0
+  for i in str:
     p = 2**l
-    result = result + (int(i)*p)
+    resultado = resultado + (int(i)*p)
     l = l-1
-  return result
+  return resultado
 
 def aproximacion_coseno(x, decimales):
     # Inicializacion de las variables
