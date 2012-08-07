@@ -4,59 +4,47 @@ from math import cos
 
 # Consigna 1
 def multiplicacion_enteros(x, y):
-    if x < 10**6 and y >= 0 and y < 10**6:
-        print "%12d \nx%11d" %(x,y)
-        print "------------"
-        #Declaramos variables:
-        numero=y%10
-        primeramult=numero*x
-        numero=(y/10)%10
-        segundamult=numero*x
-        numero=(y/100)%10
-        terceramult=numero*x
-        numero=(y/1000)%10
-        cuartamult=numero*x
-        numero=(y/10000)%10
-        quintamult=numero*x
-        numero=(y/100000)%10
-        sextamult=numero*x
-        #Se muestran las multiplicaciones que se van realizando digito por digito (en caso de no haber, solo se imprimen los guiones con un cero a la izquierda).
-        print "%12d" % (primeramult)
-        print "%11d-" % (segundamult)
-        print "%10d--" % (terceramult)
-        print "%9d---" % (cuartamult)
-        print "%8d----" % (quintamult)
-        print "%7d-----" % (sextamult)
-        print "------------"
-        #Sumamos los valores dados por cada multiplicacion e imprimimos el resultado final.
-        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000)+(sextamult*100000))
-        print "%12d" %(sum)
-    elif x < 10**6 and x >= 0 and y < 0:
-        print "%16d \nx%15d" %(x,y)
-        print "----------------"
-        numero=x%10
-        primeramult=numero*y
-        numero=(x/10)%10
-        segundamult=numero*y
-        numero=(x/100)%10
-        terceramult=numero*y
-        numero=(x/1000)%10
-        cuartamult=numero*y
-        numero=(x/10000)%10
-        quintamult=numero*y
-        numero=(x/100000)%10
-        sextamult=numero*y
-        print "%16d" % (primeramult)
-        print "%15d-" % (segundamult)
-        print "%14d--" % (terceramult)
-        print "%13d---" % (cuartamult)
-        print "%12d----" % (quintamult)
-        print "%11d-----" % (sextamult)
-        print "----------------"
-        sum=(primeramult+(segundamult*10)+(terceramult*100)+(cuartamult*1000)+(quintamult*10000)+(sextamult*100000))
-        print "%16d" %(sum)
-    else:
-      multiplicacion_enteros(-x, -y)
+    # Calculo la cantidad de digitos de x e y
+    digitos_x = len(str(x))
+    digitos_y = len(str(y))
+
+    # Si el signo es negativo agrego un digito mas.
+    signo = 1
+    if (x < 0):
+        digitos_x += 1
+        signo *= -1
+    if (y < 0):
+        digitos_y += 1
+        signo *= -1
+
+    ancho = max(digitos_x + digitos_y, digitos_y + 2)
+
+    # Imprime la operacion a realizar
+    print ""
+    print "%*d" % (ancho, x)
+    print "x %*d" % (ancho - 2, y)
+    if (y != 0):
+        print "-" * ancho
+
+    guiones = 0
+    suma = 0
+    x = abs(x)
+    y = abs(y)
+    
+    # Imprime los renglones del medio
+    while (y != 0):
+        parcial = x * (y % 10)
+        y = y / 10
+        print "%*d%s" % (ancho - guiones, parcial, "-" * guiones)
+        suma += parcial * 10**guiones
+        guiones += 1
+
+    # Imprime el resultado
+    suma = suma * signo
+    print "-" * ancho
+    print "%*d" % (ancho, suma)
+    
+    return suma
         
 # Consigna 2 - inciso 'a'
 def base2(n):
