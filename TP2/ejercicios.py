@@ -70,14 +70,23 @@ def base2(n):
         resultado = "- " + base2(-n)
     return resultado
 
-def base10(str):
-  l = len(str)-1
-  resultado = 0
-  for i in str:
-    p = 2**l
-    resultado = resultado + (int(i)*p)
-    l = l-1
-  return resultado
+def base10(binario):
+  binario = int(binario)
+  if (binario < 0):
+    return -2
+  decimal = 0
+  exponente = 0
+  while (binario != 0):
+    resto = binario % 10
+    binario = binario / 10
+    if (resto == 0):
+      decimal # no hago nada
+    elif (resto == 1):
+      decimal += 2**exponente
+    else:
+      return -1
+    exponente += 1
+  return decimal
 
 def aproximacion_coseno(x, decimales):
     # Inicializacion de las variables

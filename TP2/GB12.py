@@ -53,8 +53,13 @@ while opcion!=4:
     elif opcion2=="b":
       print "\nEscogio la opcion b): Cambiar de Binario a Decimal.:"
       while respuesta=="si" or respuesta=="s":
-        binario=base10(str(raw_input("\nEscriba un numero en binario: ")))#Pide el numero que el usuario desee convertir.
-        print "El numero convertido es %d" %(binario)#Imprime el resultado.
+        # Pide el numero.
+        binario = base10(int(raw_input("\nEscriba un numero en binario: ")))
+        while (binario < 0):
+          # En caso de ingreso incorrecto da un mensaje de error y pide otro valor.
+          print "El numero ingresado no es valido, debe ingresar un numero binario sin signo (por ej: '1110101' )"
+          binario = base10(int(raw_input("\nEscriba un numero en binario: ")))
+        print "El numero convertido es %d" % (binario)#Imprime el resultado.
         respuesta=(raw_input("\nQuiere convertir otro numero(si/no)? "))#En caso de que quiera convertir otro numero tendra que pulsar "si" o "s".
 
   #Tercer inciso.

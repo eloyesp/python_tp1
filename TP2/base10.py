@@ -1,12 +1,4 @@
-def base10(strn):
-    
-  l = len(strn)-1
-  result = 0
-  for i in strn:
-    p = 2**l
-    result = result + (int(i)*p)
-    l = l-1
-  return result
+from ejercicios import base10
 
 import unittest
 
@@ -28,7 +20,10 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(base10("1011111"), 95)
 
     def test_negativo(self):
-        self.assertEqual(base10("-1011111"), -95)
+        self.assertEqual(base10(-1011111), -2)
+
+    def test_error(self):
+        self.assertEqual(base10("15"), -1)
         
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
 unittest.TextTestRunner(verbosity=2).run(suite)
