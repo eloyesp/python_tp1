@@ -24,10 +24,10 @@ while opcion!=4:
     print "\nEscogio la opcion 1: Multiplicacion de 2 numeros enteros:"#Imprime en pantalla la opcin elejida.
     while respuesta=="si" or respuesta=="s":
       x=int(raw_input("\nIngrese el primer numero entero: "))#Pide el primer numero.
-      while x>999999:#Condicion para que no supere los 6 digitos.
+      while (abs(x) > 10**6):#Condicion para que no supere los 6 digitos.
         x=int(raw_input("El numero puede tener hasta 6 digitos: "))#Vuelve a pedir en caso de que haya ingresado mal.
       y=int(raw_input("Ingrese el segundo numero entero: "))#Pide el segundo numero.
-      while y>999999:#Condicion para que el numero ingresado no supere los 6 digitos.
+      while (abs(y) > 10**6):#Condicion para que el numero ingresado no supere los 6 digitos.
         y=int(raw_input("El numero puede tener hasta 6 digitos: "))#Vuelve a pedir el numero si el usuario ingreso incorrectamente el mismo.
       print "Usted ingreso los numeros %d y %d\n" %(x, y)#Muestra los valores que el usuario ingreso.
       multiplicacion_enteros(x, y)
